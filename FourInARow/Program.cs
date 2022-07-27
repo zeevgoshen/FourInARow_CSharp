@@ -49,6 +49,7 @@ namespace ChessBoardConsole
         private static bool StartNewGame(Cell currentCell, bool win)
         {
             myBoard = new Board(6, 7);
+            winChecker = new WinCheck();
             printBoard(myBoard);
             
             while (!win)
@@ -62,11 +63,9 @@ namespace ChessBoardConsole
 
                 myBoard.SetCellOnBoard(currentCell, state);
 
-                winChecker = new WinCheck();
                 win = winChecker.SearchWins(myBoard, state);
 
                 state.SwitchPlayer(players);
-
                
                 printBoard(myBoard);
                 if (win)
@@ -79,6 +78,8 @@ namespace ChessBoardConsole
             Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON}");
             
             Console.WriteLine($"state.CurrentPlayer.CurrentScore - {state.CurrentPlayer.CurrentScore} ");
+
+            
             Console.WriteLine($"state.TopScorePlayerName - {state.TopScorePlayerName} ");
             Console.WriteLine($"state.TopScore - {state.TopScore} ");
 
