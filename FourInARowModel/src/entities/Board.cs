@@ -8,25 +8,25 @@ namespace FourInARowModel
 {
     public class Board
     {
-        public int Size_Width { get; set; }
         public int Size_Height { get; set; }
+        public int Size_Width { get; set; }
 
         // 2d array of type cell
         public Cell[,] theGrid { get; set; }
 
-        public Board(int width, int height)
+        public Board(int height, int width)
         {
-            // initial size of the board is defined by s.
-            Size_Width = width;
+            // initial size of the board.
             Size_Height = height;
+            Size_Width = width;
 
             // create a new 2D array of type cell.
-            theGrid = new Cell[Size_Width, Size_Height];
+            theGrid = new Cell[Size_Height, Size_Width];
 
             // fill the 2D array with new Cells, each with unique x and y coordinates.
-            for (int i = 0; i < Size_Width; i++)
+            for (int i = 0; i < Size_Height; i++)
             {
-                for (int j = 0; j < Size_Height; j++)
+                for (int j = 0; j < Size_Width; j++)
                 {
                     theGrid[i, j] = new Cell(i, j);
                 }

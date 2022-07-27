@@ -11,7 +11,7 @@ namespace ChessBoardConsole
 {
     internal class Program
     {
-        static Board        myBoard = new Board(6, 7);
+        static Board        myBoard = new Board(7, 6);
         static GameState    state = new GameState();
         static Player[]     players = new Player[2];
         static WinCheck     winChecker = new WinCheck();
@@ -189,15 +189,15 @@ namespace ChessBoardConsole
         {
             // print the chess board. . means an empty cell
 
-            for (int i = 0; i < myBoard.Size_Height; i++)
+            for (int i = 0; i < myBoard.theGrid.GetLength(1); i++)
                 Console.Write($" {i} ");
             Console.WriteLine();
             Console.WriteLine("--------------------");
 
-            for (int i = 0; i < myBoard.Size_Width; i++)
+            for (int i = 0; i < myBoard.theGrid.GetLength(0); i++)
             {
 
-                for (int j = 0; j < myBoard.Size_Height; j++)
+                for (int j = 0; j < myBoard.theGrid.GetLength(1); j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
 
