@@ -18,14 +18,39 @@ namespace ChessBoardConsole
 
         static void Main(string[] args)
         {
-            Cell currentCell;
+            Cell currentCell = null;
             bool win = false;
 
             playerSelect();
             
             // show the empty chess board
-            printBoard(myBoard);
+            //printBoard(myBoard);
 
+            StartNewGame(currentCell, win);
+            
+
+            state.CurrentPlayer.CurrentScore += 1;
+            
+            Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON}");
+            Console.WriteLine($"{ Strings.REPLAY}");
+            
+            string replay = Console.ReadLine();
+            if (replay == "y")
+            {
+                win = false;
+                StartNewGame(currentCell, win);
+            }
+            else
+            {
+                Console.WriteLine($"{Strings.THANKS}");
+            }
+        }
+
+        private static void StartNewGame(Cell currentCell, bool win)
+        {
+            myBoard = new Board(6, 7);
+            printBoard(myBoard);
+            
             while (!win)
             {
                 Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}," +
@@ -34,7 +59,7 @@ namespace ChessBoardConsole
                 // ask the user for an x and y coordinate where will place a piece
                 currentCell = getValideCell();
                 //currentCell.CurrentlyOccupied = true;
-                 
+
                 myBoard.SetCellOnBoard(currentCell, state);
 
                 winChecker = new WinCheck();
@@ -55,13 +80,8 @@ namespace ChessBoardConsole
                 // print the chess board. Use an X fpr occupied square. Use + for a legal move
                 // Use . for empty cell
                 printBoard(myBoard);
-                
+
             }
-
-            Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON}");
-
-            // wait for another enter key press before ending the program.
-            Console.ReadLine();
         }
 
         private static void playerSelect()
@@ -98,6 +118,9 @@ namespace ChessBoardConsole
 
             state.CurrentPlayer = new Player();
             
+            //
+            // Updating the state with the first playing user
+            //
             state.CurrentPlayer.Name = Console.ReadLine();
 
             if (state.CurrentPlayer.Name == players[0].Name)
