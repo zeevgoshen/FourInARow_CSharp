@@ -188,8 +188,15 @@ namespace ChessBoardConsole
         private static void printBoard(Board myBoard)
         {
             // print the chess board. . means an empty cell
+
+            for (int i = 0; i < myBoard.Size_Height; i++)
+                Console.Write($" {i} ");
+            Console.WriteLine();
+            Console.WriteLine("--------------------");
+
             for (int i = 0; i < myBoard.Size_Width; i++)
             {
+
                 for (int j = 0; j < myBoard.Size_Height; j++)
                 {
                     Cell c = myBoard.theGrid[i, j];
