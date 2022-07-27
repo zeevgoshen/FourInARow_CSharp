@@ -136,7 +136,9 @@ namespace ChessBoardConsole
         private static Cell getValideCell()
         {
             bool    isValidInput = false;
+            
             int     currentRow = 0;
+            
             int     currentColumn = 0;
             
             try
@@ -145,17 +147,21 @@ namespace ChessBoardConsole
                 while (!isValidInput)
                 {
                     // get x and y from the user. return a cell location
-                    Console.WriteLine("Enter row number");
-                    currentRow = int.Parse(Console.ReadLine());
+                    //Console.WriteLine("Enter row number");
+                    //currentRow = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("Enter column number");
                     currentColumn = int.Parse(Console.ReadLine());
 
                     //isValidInput = CheckForILLegalChars(currentRow, currentColumn);
 
+                    currentRow = getVacantLine(currentColumn);
+
                     isValidInput = CheckPositionOnBoard(currentRow, currentColumn);
 
                 }
+
+                
                 return myBoard.theGrid[currentRow, currentColumn];
             }
             catch (Exception ex)
@@ -165,35 +171,38 @@ namespace ChessBoardConsole
             }
         }
 
-        //private static bool CheckForILLegalChars(int currentRow, int currentColumn)
-        //{
-        //    try
-        //    {
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+        private static int getVacantLine(int currentColumn)
+        {
+            for (int j = myBoard.theGrid.GetLength(1) - 2; j >= 0; j--)
+            {
+                if (myBoard.theGrid[j, currentColumn].CurrentlyOccupied == false)
+                {
+                    return j;
+                }
+            }
+
+            return -1;
+        }
+
 
         private static bool CheckPositionOnBoard(int currentRow, int currentColumn)
         {
-            if (currentRow < 0 || currentRow > myBoard.theGrid.GetLength(0) - 1)
-            {
-                Console.WriteLine(Strings.INVALID_ROW);
-                return false;
-            }
-            else if (currentColumn < 0 || currentColumn > myBoard.theGrid.GetLength(1) - 1)
+            if (currentColumn < 0 || currentColumn > myBoard.theGrid.GetLength(1) - 1)
             {
                 Console.WriteLine(Strings.INVALID_COLUMN);
                 return false;
-            }
-            else if (myBoard.theGrid[currentRow, currentColumn].CurrentlyOccupied)
+            } 
+            else if (currentRow == -1)
             {
                 Console.WriteLine(Strings.INVALID_POSITION);
                 return false;
             }
+            
+            //else if (myBoard.theGrid[currentColumn].CurrentlyOccupied)
+            //{
+            //    Console.WriteLine(Strings.INVALID_POSITION);
+            //    return false;
+            //}
             else
             {
                 return true;
