@@ -15,10 +15,9 @@ namespace FourInARowModel.Constants
         public const string P2_ENTER_NAME = "Player 2 please enter your name:";
         public const string INVALID_COLUMN = "Invalid column number";
         public const string INVALID_ROW = "Invalid row number";
-        public const string INVALID_POSITION = "Position already occupied";
+        public const string INVALID_POSITION = "Column is full.";
         public const string MOVE_FIRST_MSG = "Which player moves first?";
         public const string WON = "Won !!!!";
-
         public const string REPLAY = "Do you want to play again ? (y/n)";
         public const string THANKS = "Thanks for playing !!!!";
     }

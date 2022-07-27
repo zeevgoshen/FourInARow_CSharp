@@ -35,29 +35,13 @@ namespace FourInARowModel
 
         public void SetCellOnBoard(Cell currentCell, GameState state)
         {
-            // step 1 - clear all previous legal moves
-            //for (int i = 0; i < Size; i++)
-            //{
-            //    for (int j = 0; j < Size; j++)
-            //    {
-            //        theGrid[i, j].LegalNextMove = false;
-            //        theGrid[i, j].CurrentlyOccupied = false;
-            //    }
-            //}
-            
-            // step 2 - find all legal moves and mark the cells as "legal"
-
             // check ouf of bounds
-            if (!theGrid[currentCell.RowNumber, currentCell.ColumnNumber].LegalNextMove)
+            if (!theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied)
             {
-                
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].LegalNextMove = true;
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = state.CurrentPlayer.Symbol;
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied = true;
-                
             }
-
-
         }
     }
 }
