@@ -1,5 +1,6 @@
 ﻿using FourInARowModel;
 using FourInARowModel.Constants;
+using FourInARowModel.src.logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace ChessBoardConsole
         static Board        myBoard = new Board(6, 7);
         static GameState    state = new GameState();
         static Player[]     players = new Player[2];
-        
+        static WinCheck     winChecker = new WinCheck();
+
         static void Main(string[] args)
         {
             Cell currentCell;
@@ -26,18 +28,21 @@ namespace ChessBoardConsole
 
             while (!win)
             {
-                Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}, {Strings.COLOR} {state.CurrentPlayer.Color}");
+                Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}," +
+                    $" {Strings.COLOR} {state.CurrentPlayer.Color}");
 
                 // ask the user for an x and y coordinate where will place a piece
-                
-                currentCell = setCurrentCell();
-                currentCell.CurrentlyOccupied = true;
+                currentCell = getValideCell();
+                //currentCell.CurrentlyOccupied = true;
+                 
+                myBoard.SetCellOnBoard(currentCell, state);
 
-                
-                // calculate all legal moves for that piece
+                winChecker = new WinCheck();
+                win = winChecker.SearchWins(myBoard, state);
 
-                myBoard.MarkNextLegalMoves(currentCell, "Red", state);
-
+                //
+                // Switch players
+                //
                 if (state.CurrentPlayer.Name == players[1].Name)
                 {
                     state.CurrentPlayer = players[0];
@@ -52,6 +57,8 @@ namespace ChessBoardConsole
                 printBoard(myBoard);
                 
             }
+
+            Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON}");
 
             // wait for another enter key press before ending the program.
             Console.ReadLine();
@@ -69,7 +76,7 @@ namespace ChessBoardConsole
             Console.WriteLine(Strings.P1_CHOOSE_COLOR);
             string color = Console.ReadLine();
 
-            if (color == "Red".ToLower())
+            if (color == "r".ToLower())
             {
                 players[0].Color = "Red";
                 players[0].Symbol = "R";
@@ -103,26 +110,49 @@ namespace ChessBoardConsole
             }
         }
 
-        private static Cell setCurrentCell()
+        private static Cell getValideCell()
         {
-            bool isValidPosition = false;
-            int currentRow = 0;
-            int currentColumn = 0;
+            bool    isValidInput = false;
+            int     currentRow = 0;
+            int     currentColumn = 0;
             
-            while (!isValidPosition)
+            try
             {
-                // get x and y from the user. return a cell location
-                Console.WriteLine("Enter row number");
-                currentRow = int.Parse(Console.ReadLine());
+                
+                while (!isValidInput)
+                {
+                    // get x and y from the user. return a cell location
+                    Console.WriteLine("Enter row number");
+                    currentRow = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter column number");
-                currentColumn = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter column number");
+                    currentColumn = int.Parse(Console.ReadLine());
 
-                isValidPosition = CheckPositionOnBoard(currentRow, currentColumn);
+                    //isValidInput = CheckForILLegalChars(currentRow, currentColumn);
 
+                    isValidInput = CheckPositionOnBoard(currentRow, currentColumn);
+
+                }
+                return myBoard.theGrid[currentRow, currentColumn];
             }
-            return myBoard.theGrid[currentRow, currentColumn];
+            catch (Exception ex)
+            {
+                Console.WriteLine(Strings.INVALID_POSITION);
+                throw new Exception(ex.Message);
+            }
         }
+
+        //private static bool CheckForILLegalChars(int currentRow, int currentColumn)
+        //{
+        //    try
+        //    {
+                
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
         private static bool CheckPositionOnBoard(int currentRow, int currentColumn)
         {
@@ -149,8 +179,8 @@ namespace ChessBoardConsole
 
         private static void printBoard(Board myBoard)
         {
-            // print the chess board. Use an X fpr occupied square. Use + for a legal move
-            // Use . for empty cell
+            // print the chess board.
+            // . means an empty cell
             for (int i = 0; i < myBoard.Size_Width; i++)
             {
                 for (int j = 0; j < myBoard.Size_Height; j++)

@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Board.cs" />
-    <Compile Include="src\Cell.cs" />
+    <Compile Include="src\entities\Board.cs" />
+    <Compile Include="src\entities\Cell.cs" />
     <Compile Include="constants\Strings.cs" />
-    <Compile Include="src\GameState.cs" />
-    <Compile Include="src\Player.cs" />
+    <Compile Include="src\logic\GameState.cs" />
+    <Compile Include="src\entities\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\logic\WinCheck.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
