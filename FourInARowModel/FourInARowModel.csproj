@@ -44,6 +44,7 @@
     <Compile Include="src\entities\Board.cs" />
     <Compile Include="src\entities\Cell.cs" />
     <Compile Include="constants\Strings.cs" />
+    <Compile Include="src\entities\Game.cs" />
     <Compile Include="src\logic\GameState.cs" />
     <Compile Include="src\entities\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

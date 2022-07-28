@@ -8,12 +8,15 @@ namespace ChessBoardConsole
         static GameState    state = new GameState();
         static Player[]     players = new Player[2];
         static WinCheck     winChecker = new WinCheck();
+        static Game         game = null;
 
         static void Main(string[] args)
         {
             Cell currentCell = new Cell(0,0);
             bool win = false;
-            state.PlayerHighScores = new List<Player>();
+            game = new Game(state);
+            
+            game.PlayerHighScores = new List<Player>();
             
             try
             {
@@ -22,7 +25,6 @@ namespace ChessBoardConsole
                 SetStartingPlayerInState();
 
                 while (StartNewGame(currentCell, win));
-              
             }
             catch (Exception ex)
             {
@@ -33,11 +35,11 @@ namespace ChessBoardConsole
         private static void SetStartingPlayerInState()
         {
             Console.WriteLine($"{Strings.MOVE_FIRST_MSG} {players[0].Name} or {players[1].Name} ?");
-            state.CurrentPlayer = new Player();
-
+            game.CurrentPlayer = new Player();
+            
             // Updating the state with the first playing user
-            state.CurrentPlayer.Name = Console.ReadLine();
-            state.SetPlayer(players);
+            game.CurrentPlayer.Name = Console.ReadLine();
+            game.SetPlayer(players);
         }
 
         private static bool StartNewGame(Cell currentCell, bool win)
@@ -48,28 +50,28 @@ namespace ChessBoardConsole
             
             while (!win)
             {
-                Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}," +
-                    $" {Strings.COLOR} {state.CurrentPlayer.Color}");
-
+                Console.WriteLine($"{Strings.NOW_PLAYING} {game.CurrentPlayer.Name}," +
+                    $" {Strings.COLOR} {game.CurrentPlayer.Color}");
+                
                 currentCell = myBoard.getValidCell();
-                myBoard.SetCellOnBoard(currentCell, state);
+                myBoard.SetCellOnBoard(currentCell, game);
 
-                win = winChecker.SearchWins(myBoard, state);
+                win = winChecker.SearchWins(myBoard, game);
 
                 if (!win) { 
-                    state.SwitchPlayer(players);
+                    game.SwitchPlayer(players);
                 }
                 
                 myBoard.printBoard();
                 if (win)
                 {
-                    state.CurrentPlayer.CurrentScore += 1;
+                    game.CurrentPlayer.CurrentScore += 1;
 
                     // Saving top score and top score player name
-                    if (state.CurrentPlayer.CurrentScore > state.TopScore)
+                    if (game.CurrentPlayer.CurrentScore > state.TopScore)
                     {
-                        state.TopScore = state.CurrentPlayer.CurrentScore;
-                        state.TopScorePlayerName = state.CurrentPlayer.Name;
+                        state.TopScore = game.CurrentPlayer.CurrentScore;
+                        state.TopScorePlayerName = game.CurrentPlayer.Name;
                     }
                     break;
                 }
@@ -86,8 +88,8 @@ namespace ChessBoardConsole
             } 
             else
             {
-                Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON} {Strings.SCORE_TXT}" +
-                    $" {state.CurrentPlayer.CurrentScore} ");
+                Console.WriteLine($"{game.CurrentPlayer.Name} {Strings.WON} {Strings.SCORE_TXT}" +
+                    $" {game.CurrentPlayer.CurrentScore} ");
 
                 Console.WriteLine($"{Strings.TOP_PLAYER_NAME} {state.TopScorePlayerName}" +
                     $" {Strings.SCORE_TXT} {state.TopScore}");
@@ -103,7 +105,7 @@ namespace ChessBoardConsole
             }
             else
             {
-                state.ShowHighScores();
+                game.ShowHighScores();
                 return false;
             }
         }
@@ -114,8 +116,8 @@ namespace ChessBoardConsole
             players[0] = new Player();
             players[1] = new Player();
 
-            state.PlayerHighScores.Add(players[0]);
-            state.PlayerHighScores.Add(players[1]);
+            game.PlayerHighScores.Add(players[0]);
+            game.PlayerHighScores.Add(players[1]);
 
             Console.WriteLine(Strings.P1_ENTER_NAME);
             players[0].Name = Console.ReadLine();

@@ -1,118 +1,122 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FourInARowTests { }
-
-[TestClass]
-public class TestAlmostWinning
+namespace FourInARowTests
 {
-    Board testBoard = new Board(7, 6);
-    GameState testState;
-    Player testPlayer;
-    Cell testCell1;
-    Cell testCell2;
-    Cell testCell3;
-    Cell testCell4;
 
-
-    public void TestSetup()
+    [TestClass]
+    public class TestAlmostWinning
     {
-        testPlayer = new Player();
-        testState = new GameState();
+        Board testBoard = new Board(7, 6);
+        GameState testState;
+        Game testGame;
+        Player testPlayer;
+        Cell testCell1;
+        Cell testCell2;
+        Cell testCell3;
+        Cell testCell4;
 
-        testState.CurrentPlayer = testPlayer;
-        testState.CurrentPlayer.Symbol = "X";
 
-    }
+        public void TestSetup()
+        {
+            testPlayer = new Player();
+            testState = new GameState();
+            testGame = new Game(testState);
 
-    [TestMethod]
-    public void Test_Horizontal_Not_Winning()
-    {
-        TestSetup();
+            testGame.CurrentPlayer = testPlayer;
+            testGame.CurrentPlayer.Symbol = "X";
 
-        // x is height, y is width
-        testCell1 = new Cell(0, 1);
-        testCell2 = new Cell(0, 2);
-        testCell3 = new Cell(1, 3);
-        testCell4 = new Cell(0, 4);
+        }
 
-        testBoard.SetCellOnBoard(testCell1, testState);
-        testBoard.SetCellOnBoard(testCell2, testState);
-        testBoard.SetCellOnBoard(testCell3, testState);
-        testBoard.SetCellOnBoard(testCell4, testState);
+        [TestMethod]
+        public void Test_Horizontal_Not_Winning()
+        {
+            TestSetup();
 
-        WinCheck testWin = new WinCheck();
+            // x is height, y is width
+            testCell1 = new Cell(0, 1);
+            testCell2 = new Cell(0, 2);
+            testCell3 = new Cell(1, 3);
+            testCell4 = new Cell(0, 4);
 
-        bool res = testWin.SearchWins(testBoard, testState);
+            testBoard.SetCellOnBoard(testCell1, testGame);
+            testBoard.SetCellOnBoard(testCell2, testGame);
+            testBoard.SetCellOnBoard(testCell3, testGame);
+            testBoard.SetCellOnBoard(testCell4, testGame);
 
-        Assert.AreEqual(res, false);
-    }
+            WinCheck testWin = new WinCheck();
 
-    [TestMethod]
-    public void Test_Vertical_Not_Winning()
-    {
-        TestSetup();
+            bool res = testWin.SearchWins(testBoard, testGame);
 
-        // x is height, y is width
-        testCell1 = new Cell(1, 0);
-        testCell2 = new Cell(2, 0);
-        testCell3 = new Cell(5, 0);
-        testCell4 = new Cell(4, 0);
+            Assert.AreEqual(res, false);
+        }
 
-        testBoard.SetCellOnBoard(testCell1, testState);
-        testBoard.SetCellOnBoard(testCell2, testState);
-        testBoard.SetCellOnBoard(testCell3, testState);
-        testBoard.SetCellOnBoard(testCell4, testState);
+        [TestMethod]
+        public void Test_Vertical_Not_Winning()
+        {
+            TestSetup();
 
-        WinCheck testWin = new WinCheck();
+            // x is height, y is width
+            testCell1 = new Cell(1, 0);
+            testCell2 = new Cell(2, 0);
+            testCell3 = new Cell(5, 0);
+            testCell4 = new Cell(4, 0);
 
-        bool res = testWin.SearchWins(testBoard, testState);
+            testBoard.SetCellOnBoard(testCell1, testGame);
+            testBoard.SetCellOnBoard(testCell2, testGame);
+            testBoard.SetCellOnBoard(testCell3, testGame);
+            testBoard.SetCellOnBoard(testCell4, testGame);
 
-        Assert.AreEqual(res, false);
-    }
+            WinCheck testWin = new WinCheck();
 
-    [TestMethod]
-    public void Test_AscendingDiagonal_Not_Winning()
-    {
-        TestSetup();
+            bool res = testWin.SearchWins(testBoard, testGame);
 
-        // x is height, y is width
-        testCell1 = new Cell(0, 0);
-        testCell2 = new Cell(1, 1);
-        testCell3 = new Cell(2, 1);
-        testCell4 = new Cell(3, 3);
+            Assert.AreEqual(res, false);
+        }
 
-        testBoard.SetCellOnBoard(testCell1, testState);
-        testBoard.SetCellOnBoard(testCell2, testState);
-        testBoard.SetCellOnBoard(testCell3, testState);
-        testBoard.SetCellOnBoard(testCell4, testState);
+        [TestMethod]
+        public void Test_AscendingDiagonal_Not_Winning()
+        {
+            TestSetup();
 
-        WinCheck testWin = new WinCheck();
+            // x is height, y is width
+            testCell1 = new Cell(0, 0);
+            testCell2 = new Cell(1, 1);
+            testCell3 = new Cell(2, 1);
+            testCell4 = new Cell(3, 3);
 
-        bool res = testWin.SearchWins(testBoard, testState);
+            testBoard.SetCellOnBoard(testCell1, testGame);
+            testBoard.SetCellOnBoard(testCell2, testGame);
+            testBoard.SetCellOnBoard(testCell3, testGame);
+            testBoard.SetCellOnBoard(testCell4, testGame);
 
-        Assert.AreEqual(res, false);
-    }
+            WinCheck testWin = new WinCheck();
 
-    [TestMethod]
-    public void Test_DescendingDiagonal_Not_Winning()
-    {
-        TestSetup();
+            bool res = testWin.SearchWins(testBoard, testGame);
 
-        // x is height, y is width
-        testCell1 = new Cell(3, 3);
-        testCell2 = new Cell(2, 1);
-        testCell3 = new Cell(1, 1);
-        testCell4 = new Cell(0, 0);
+            Assert.AreEqual(res, false);
+        }
 
-        testBoard.SetCellOnBoard(testCell1, testState);
-        testBoard.SetCellOnBoard(testCell2, testState);
-        testBoard.SetCellOnBoard(testCell3, testState);
-        testBoard.SetCellOnBoard(testCell4, testState);
+        [TestMethod]
+        public void Test_DescendingDiagonal_Not_Winning()
+        {
+            TestSetup();
 
-        WinCheck testWin = new WinCheck();
+            // x is height, y is width
+            testCell1 = new Cell(3, 3);
+            testCell2 = new Cell(2, 1);
+            testCell3 = new Cell(1, 1);
+            testCell4 = new Cell(0, 0);
 
-        bool res = testWin.SearchWins(testBoard, testState);
+            testBoard.SetCellOnBoard(testCell1, testGame);
+            testBoard.SetCellOnBoard(testCell2, testGame);
+            testBoard.SetCellOnBoard(testCell3, testGame);
+            testBoard.SetCellOnBoard(testCell4, testGame);
 
-        Assert.AreEqual(res, false);
+            WinCheck testWin = new WinCheck();
+
+            bool res = testWin.SearchWins(testBoard, testGame);
+
+            Assert.AreEqual(res, false);
+        }
     }
 }
