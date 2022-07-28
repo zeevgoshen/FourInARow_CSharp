@@ -106,7 +106,13 @@ namespace ChessBoardConsole
         {
             players[0] = new Player();
             players[1] = new Player();
-            
+
+            state.PlayerHighScores = new List<Player>();
+
+            state.PlayerHighScores.Add(players[0]);
+            state.PlayerHighScores.Add(players[1]);
+
+
             Console.WriteLine(Strings.P1_ENTER_NAME);
             players[0].Name = Console.ReadLine();
 

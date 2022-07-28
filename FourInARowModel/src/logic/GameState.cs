@@ -1,11 +1,16 @@
 ﻿using FourInARowModel.Constants;
 using System;
+using System.Collections.Generic;
 
 namespace FourInARowModel { }
 public class GameState
 {
     public int TopScore { get; set; }
     public string TopScorePlayerName { get; set; }
+
+    public List<Player> PlayerHighScores { get; set; }
+
+
     public Player CurrentPlayer { get; set; }
 
     public void SwitchPlayer(Player[] players)

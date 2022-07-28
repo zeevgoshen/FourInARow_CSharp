@@ -52,10 +52,22 @@ public class Board
             while (!isValidInput)
             {
                 // get x and y from the user. return a cell location
+                int result = 0;
+                bool columnInput = false;
+                Console.WriteLine(Strings.ENTER_A_COLUMN);
 
-                Console.WriteLine("Enter a column number");
-                currentColumn = int.Parse(Console.ReadLine());
-
+                columnInput = int.TryParse(Console.ReadLine(), out result);
+                
+                if (columnInput)
+                {
+                    currentColumn = result;
+                }
+                else
+                {
+                    Console.WriteLine(Strings.NONE_NUMERIC_INPUT);
+                    isValidInput = false;
+                    continue;
+                }
                 currentRow = getVacantLine(currentColumn);
 
                 if (currentRow == -1)
