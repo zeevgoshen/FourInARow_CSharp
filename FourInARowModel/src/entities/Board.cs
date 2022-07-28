@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FourInARowModel.Constants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,95 @@ namespace FourInARowModel
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = state.CurrentPlayer.Symbol;
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied = true;
             }
+        }
+
+        public Cell getValideCell()
+        {
+            bool isValidInput = false;
+            int currentRow = 0;
+            int currentColumn = 0;
+
+            try
+            {
+
+                while (!isValidInput)
+                {
+                    // get x and y from the user. return a cell location
+
+                    Console.WriteLine("Enter a column number");
+                    currentColumn = int.Parse(Console.ReadLine());
+
+                    currentRow = getVacantLine(currentColumn);
+
+                    if (currentRow == -1)
+                    {
+                        isValidInput = false;
+                    }
+                    else
+                    {
+                        isValidInput = true;
+                    }
+                }
+
+
+                return theGrid[currentRow, currentColumn];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(Strings.INVALID_POSITION);
+                throw new Exception(ex.Message);
+            }
+        }
+        
+        public int getVacantLine(int currentColumn)
+        {
+            if (currentColumn < 0 || currentColumn > theGrid.GetLength(1) - 1)
+            {
+                Console.WriteLine(Strings.INVALID_COLUMN);
+                return -1;
+            }
+            for (int j = theGrid.GetLength(1) - 2; j >= 0; j--)
+            {
+                if (theGrid[j, currentColumn].CurrentlyOccupied == false)
+                {
+                    return j;
+                }
+            }
+
+            // incase the column is full, we return -1 and not 0, since 0 is also
+            // a valid row number
+            return -1;
+        }
+
+        public void printBoard()
+        {
+            // print the chess board. . means an empty cell
+
+            for (int i = 0; i < theGrid.GetLength(1); i++)
+                Console.Write($" {i} ");
+            Console.WriteLine();
+            Console.WriteLine("--------------------");
+
+            for (int i = 0; i < theGrid.GetLength(0); i++)
+            {
+
+                for (int j = 0; j < theGrid.GetLength(1); j++)
+                {
+                    Cell c = theGrid[i, j];
+
+                    if (c.CurrentlyOccupied == true)
+                    {
+                        Console.Write($" {theGrid[i, j].Symbol} ");
+                    }
+                    else
+                    {
+                        Console.Write(" . ");
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("===========================");
         }
     }
 }
