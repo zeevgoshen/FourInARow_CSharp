@@ -1,11 +1,11 @@
-﻿using FourInARowModel;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FourInARowModel;
 using FourInARowModel.src.logic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FourInARowTests
 {
     [TestClass]
-    public class TestWinning
+    public class TestAlmostWinning
     {
         Board testBoard = new Board(7, 6);
         GameState testState;
@@ -20,7 +20,7 @@ namespace FourInARowTests
         {
             testPlayer = new Player();
             testState = new GameState();
-            
+
             testState.CurrentPlayer = testPlayer;
             testState.CurrentPlayer.Symbol = "X";
 
@@ -30,13 +30,13 @@ namespace FourInARowTests
         public void TestHorizontalWinning()
         {
             TestSetup();
-            
+
             // x is height, y is width
-            testCell1 = new Cell(0,  1);
+            testCell1 = new Cell(0, 1);
             testCell2 = new Cell(0, 2);
-            testCell3 = new Cell(0, 3);
+            testCell3 = new Cell(1, 3);
             testCell4 = new Cell(0, 4);
-            
+
             testBoard.SetCellOnBoard(testCell1, testState);
             testBoard.SetCellOnBoard(testCell2, testState);
             testBoard.SetCellOnBoard(testCell3, testState);
@@ -46,7 +46,7 @@ namespace FourInARowTests
 
             bool res = testWin.SearchWins(testBoard, testState);
 
-            Assert.AreEqual(res, true);
+            Assert.AreEqual(res, false);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace FourInARowTests
             // x is height, y is width
             testCell1 = new Cell(1, 0);
             testCell2 = new Cell(2, 0);
-            testCell3 = new Cell(3, 0);
+            testCell3 = new Cell(5, 0);
             testCell4 = new Cell(4, 0);
 
             testBoard.SetCellOnBoard(testCell1, testState);
@@ -69,7 +69,7 @@ namespace FourInARowTests
 
             bool res = testWin.SearchWins(testBoard, testState);
 
-            Assert.AreEqual(res, true);
+            Assert.AreEqual(res, false);
         }
 
         [TestMethod]
@@ -80,7 +80,7 @@ namespace FourInARowTests
             // x is height, y is width
             testCell1 = new Cell(0, 0);
             testCell2 = new Cell(1, 1);
-            testCell3 = new Cell(2, 2);
+            testCell3 = new Cell(2, 1);
             testCell4 = new Cell(3, 3);
 
             testBoard.SetCellOnBoard(testCell1, testState);
@@ -92,7 +92,7 @@ namespace FourInARowTests
 
             bool res = testWin.SearchWins(testBoard, testState);
 
-            Assert.AreEqual(res, true);
+            Assert.AreEqual(res, false);
         }
 
         [TestMethod]
@@ -102,7 +102,7 @@ namespace FourInARowTests
 
             // x is height, y is width
             testCell1 = new Cell(3, 3);
-            testCell2 = new Cell(2, 2);
+            testCell2 = new Cell(2, 1);
             testCell3 = new Cell(1, 1);
             testCell4 = new Cell(0, 0);
 
@@ -115,7 +115,7 @@ namespace FourInARowTests
 
             bool res = testWin.SearchWins(testBoard, testState);
 
-            Assert.AreEqual(res, true);
+            Assert.AreEqual(res, false);
         }
     }
 }

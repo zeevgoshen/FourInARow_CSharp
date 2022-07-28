@@ -6,7 +6,7 @@ namespace ChessBoardConsole
 {
     internal class Program
     {
-        static Board        myBoard = new Board(7, 6);
+        static Board?       myBoard = null;
         static GameState    state = new GameState();
         static Player[]     players = new Player[2];
         static WinCheck     winChecker = new WinCheck();
@@ -19,7 +19,7 @@ namespace ChessBoardConsole
             try
             {
                 CreatePlayers();
-
+                
                 SetStartingPlayerInState();
 
                 while (StartNewGame(currentCell, win));

@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="TestWinning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBoardBehavior.cs" />
+    <Compile Include="TestAlmostWinning.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
