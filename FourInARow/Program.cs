@@ -105,23 +105,26 @@ namespace ChessBoardConsole
             }
             else
             {
-                Console.WriteLine($"{Strings.THANKS}");
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine($"Highscores");
-                Console.WriteLine($"----------");
-                
-                
-                foreach (Player player in state.PlayerHighScores)
-                {
-                    Console.WriteLine($"Player - {player.Name} {Strings.SCORE_TXT} {player.CurrentScore}");
-                }
-                
-
+                ShowHighScores();
                 return false;
             }
         }
+        
+        private static void ShowHighScores()
+        {
 
+            Console.WriteLine($"{Strings.THANKS}");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine($"Highscores");
+            Console.WriteLine($"----------");
+
+
+            foreach (Player player in state.PlayerHighScores)
+            {
+                Console.WriteLine($"Player - {player.Name} {Strings.SCORE_TXT} {player.CurrentScore}");
+            }
+        }
         private static void CreatePlayers()
         {
             players[0] = new Player();
