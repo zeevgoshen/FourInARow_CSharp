@@ -44,7 +44,9 @@ public class WinCheck
                     myBoard.theGrid[i - 1, j + 1].Symbol == player &&
                     myBoard.theGrid[i - 2, j + 2].Symbol == player && 
                     myBoard.theGrid[i - 3, j + 3].Symbol == player)
+                { 
                     return true;
+                }
             }
         }
 
@@ -57,7 +59,9 @@ public class WinCheck
                     myBoard.theGrid[i - 1, j - 1].Symbol == player &&
                     myBoard.theGrid[i - 2, j - 2].Symbol == player &&
                     myBoard.theGrid[i - 3, j - 3].Symbol == player)
+                { 
                     return true;
+                }
             }
         }
         return false;
