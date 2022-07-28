@@ -32,7 +32,7 @@ public class Board
 
     public void SetCellOnBoard(Cell currentCell, GameState state)
     {
-        // check ouf of bounds
+        // occupy the cell with the current player's input column.
         if (!theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied)
         {
             theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = state.CurrentPlayer.Symbol;
@@ -48,10 +48,9 @@ public class Board
 
         try
         {
-
             while (!isValidInput)
             {
-                // get x and y from the user. return a cell location
+                // get a column number from the user.
                 int result = 0;
                 bool columnInput = false;
                 Console.WriteLine(Strings.ENTER_A_COLUMN);
@@ -117,16 +116,17 @@ public class Board
 
     public void printBoard()
     {
-        // print the chess board. . means an empty cell
-
+        // print the board column headers.
         for (int i = 0; i < theGrid.GetLength(1); i++)
+        {
             Console.Write($" {i} ");
+        }
         Console.WriteLine();
         Console.WriteLine("--------------------");
 
+        // print the board.
         for (int i = 0; i < theGrid.GetLength(0); i++)
         {
-
             for (int j = 0; j < theGrid.GetLength(1); j++)
             {
                 Cell c = theGrid[i, j];
@@ -142,7 +142,6 @@ public class Board
             }
             Console.WriteLine();
         }
-
         Console.WriteLine("===========================");
     }
 }

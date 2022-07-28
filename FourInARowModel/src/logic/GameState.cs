@@ -7,10 +7,7 @@ public class GameState
 {
     public int TopScore { get; set; }
     public string TopScorePlayerName { get; set; }
-
     public List<Player> PlayerHighScores { get; set; }
-
-
     public Player CurrentPlayer { get; set; }
 
     public void SwitchPlayer(Player[] players)
@@ -30,6 +27,9 @@ public class GameState
 
     public void SetPlayer(Player[] players)
     {
+        //
+        // Set player in cache
+        //
         if (CurrentPlayer.Name == players[0].Name)
         {
             CurrentPlayer = players[0];
@@ -41,7 +41,6 @@ public class GameState
     }
     public void ShowHighScores()
     {
-
         Console.WriteLine(Strings.THANKS);
         Console.WriteLine();
         Console.WriteLine();
@@ -50,7 +49,7 @@ public class GameState
 
         foreach (Player player in PlayerHighScores)
         {
-            Console.WriteLine($"{Strings.PLAYER_TXT} = {player.Name}, {Strings.SCORE_TXT} = {player.CurrentScore}");
+            Console.WriteLine($"{Strings.PLAYER_TXT} {player.Name}, {Strings.SCORE_TXT} {player.CurrentScore}");
         }
     }
 }

@@ -71,13 +71,11 @@ namespace ChessBoardConsole
                         state.TopScore = state.CurrentPlayer.CurrentScore;
                         state.TopScorePlayerName = state.CurrentPlayer.Name;
                     }
-                    
                     break;
                 }
             }
 
             return PrintStatsAndContinue();
-
         }
 
         private static bool PrintStatsAndContinue()
@@ -115,7 +113,6 @@ namespace ChessBoardConsole
         {
             players[0] = new Player();
             players[1] = new Player();
-
 
             state.PlayerHighScores.Add(players[0]);
             state.PlayerHighScores.Add(players[1]);
