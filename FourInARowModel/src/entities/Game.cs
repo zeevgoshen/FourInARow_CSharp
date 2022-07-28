@@ -11,6 +11,7 @@ public class Game
     static GameState state = new GameState();
     static Board myBoard = null;
     static WinCheck winChecker = new WinCheck();
+    static bool win = false;
 
     public Game()
     {
@@ -59,7 +60,6 @@ public class Game
     public static bool StartNewGame()
     {
         Cell currentCell = new Cell(0, 0);
-        bool win = false;
         
         myBoard = new Board(6, 7);
         winChecker = new WinCheck();
@@ -83,6 +83,7 @@ public class Game
             myBoard.printBoard();
             if (win)
             {
+                win = false;
                 CurrentPlayer.CurrentScore += 1;
 
                 // Saving top score and top score player name
