@@ -80,8 +80,6 @@ public class Board
                     isValidInput = true;
                 }
             }
-
-
             return theGrid[currentRow, currentColumn];
         }
         catch (Exception ex)
@@ -93,22 +91,28 @@ public class Board
         
     public int getVacantLine(int currentColumn)
     {
-        if (currentColumn < 0 || currentColumn > theGrid.GetLength(1) - 1)
+        try
         {
-            Console.WriteLine(Strings.INVALID_COLUMN);
+            if (currentColumn < 0 || currentColumn > theGrid.GetLength(1) - 1)
+            {
+                Console.WriteLine(Strings.INVALID_COLUMN);
+                return -1;
+            }
+            for (int j = theGrid.GetLength(1) - 2; j >= 0; j--)
+            {
+                if (theGrid[j, currentColumn].CurrentlyOccupied == false)
+                {
+                    return j;
+                }
+            }
+            // incase the column is full, we return -1 and not 0, since 0 is also
+            // a valid row number
             return -1;
         }
-        for (int j = theGrid.GetLength(1) - 2; j >= 0; j--)
+        catch (Exception ex)
         {
-            if (theGrid[j, currentColumn].CurrentlyOccupied == false)
-            {
-                return j;
-            }
+            throw new Exception(ex.Message);
         }
-
-        // incase the column is full, we return -1 and not 0, since 0 is also
-        // a valid row number
-        return -1;
     }
 
     public void printBoard()

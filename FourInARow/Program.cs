@@ -13,7 +13,8 @@ namespace ChessBoardConsole
         {
             Cell currentCell = new Cell(0,0);
             bool win = false;
-
+            state.PlayerHighScores = new List<Player>();
+            
             try
             {
                 CreatePlayers();
@@ -81,11 +82,18 @@ namespace ChessBoardConsole
 
         private static bool PrintStatsAndContinue()
         {
-            Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON} {Strings.SCORE_TXT}" +
-                $" {state.CurrentPlayer.CurrentScore} ");
+            if (players[0].CurrentScore == players[1].CurrentScore)
+            {
+                Console.WriteLine("TIE");
+            } 
+            else
+            {
+                Console.WriteLine($"{state.CurrentPlayer.Name} {Strings.WON} {Strings.SCORE_TXT}" +
+                    $" {state.CurrentPlayer.CurrentScore} ");
 
-            Console.WriteLine($"{Strings.TOP_PLAYER_NAME} {state.TopScorePlayerName}" +
-                $" {Strings.SCORE_TXT} {state.TopScore}");
+                Console.WriteLine($"{Strings.TOP_PLAYER_NAME} {state.TopScorePlayerName}" +
+                    $" {Strings.SCORE_TXT} {state.TopScore}");
+            }
 
             Console.WriteLine($"{Strings.REPLAY}");
 
@@ -98,6 +106,18 @@ namespace ChessBoardConsole
             else
             {
                 Console.WriteLine($"{Strings.THANKS}");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine($"Highscores");
+                Console.WriteLine($"----------");
+                
+                
+                foreach (Player player in state.PlayerHighScores)
+                {
+                    Console.WriteLine($"Player - {player.Name} {Strings.SCORE_TXT} {player.CurrentScore}");
+                }
+                
+
                 return false;
             }
         }
@@ -107,11 +127,9 @@ namespace ChessBoardConsole
             players[0] = new Player();
             players[1] = new Player();
 
-            state.PlayerHighScores = new List<Player>();
 
             state.PlayerHighScores.Add(players[0]);
             state.PlayerHighScores.Add(players[1]);
-
 
             Console.WriteLine(Strings.P1_ENTER_NAME);
             players[0].Name = Console.ReadLine();
