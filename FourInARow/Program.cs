@@ -84,7 +84,7 @@ namespace ChessBoardConsole
         {
             if (players[0].CurrentScore == players[1].CurrentScore)
             {
-                Console.WriteLine("TIE");
+                Console.WriteLine(Strings.TIE);
             } 
             else
             {
@@ -105,26 +105,12 @@ namespace ChessBoardConsole
             }
             else
             {
-                ShowHighScores();
+                state.ShowHighScores();
                 return false;
             }
         }
         
-        private static void ShowHighScores()
-        {
-
-            Console.WriteLine($"{Strings.THANKS}");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine($"Highscores");
-            Console.WriteLine($"----------");
-
-
-            foreach (Player player in state.PlayerHighScores)
-            {
-                Console.WriteLine($"Player - {player.Name} {Strings.SCORE_TXT} {player.CurrentScore}");
-            }
-        }
+        
         private static void CreatePlayers()
         {
             players[0] = new Player();
@@ -142,16 +128,16 @@ namespace ChessBoardConsole
 
             if (color == "r".ToLower())
             {
-                players[0].Color = "Red";
+                players[0].Color = Strings.COLOR_RED;
                 players[0].Symbol = "R";
-                players[1].Color = "Yellow";
+                players[1].Color = Strings.COLOR_YELLOW;
                 players[1].Symbol = "Y";
             }
             else
             {
-                players[0].Color = "Yellow";
+                players[0].Color = Strings.COLOR_YELLOW;
                 players[0].Symbol = "Y";
-                players[1].Color = "Red";
+                players[1].Color = Strings.COLOR_RED;
                 players[1].Symbol = "R";
             }
 

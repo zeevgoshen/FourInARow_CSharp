@@ -22,6 +22,12 @@ namespace FourInARowModel.Constants
         public const string THANKS = "Thanks for playing !!!!";
         public const string TOP_PLAYER_NAME = "Top HighScore Player Name - ";
         public const string SCORE_TXT = "Score -";
+        public const string HIGHSCORES = "Highscores";
+        public const string PLAYER_TXT = "Player -";
+        public const string HIGHSCORES_SEPARATOR = "----------";
+        public const string TIE = "TIE";
+        public const string COLOR_YELLOW = "Yellow";
+        public const string COLOR_RED = "Red";
 
         //Error messages
         public const string EQUAL_PLAYERS_NAME_ERROR = "Both player names cannot be identical.";

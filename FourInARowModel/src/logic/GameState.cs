@@ -38,5 +38,19 @@ public class GameState
         {
             CurrentPlayer = players[1];
         }
-    }    
+    }
+    public void ShowHighScores()
+    {
+
+        Console.WriteLine(Strings.THANKS);
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine(Strings.HIGHSCORES);
+        Console.WriteLine(Strings.HIGHSCORES_SEPARATOR);
+
+        foreach (Player player in PlayerHighScores)
+        {
+            Console.WriteLine($"{Strings.PLAYER_TXT} = {player.Name}, {Strings.SCORE_TXT} = {player.CurrentScore}");
+        }
+    }
 }
