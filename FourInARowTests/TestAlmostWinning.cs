@@ -27,7 +27,7 @@ namespace FourInARowTests
         }
 
         [TestMethod]
-        public void Test_HorizontalWinning()
+        public void Test_Horizontal_Not_Winning()
         {
             TestSetup();
 
@@ -50,7 +50,7 @@ namespace FourInARowTests
         }
 
         [TestMethod]
-        public void Test_VerticalWinning()
+        public void Test_Vertical_Not_Winning()
         {
             TestSetup();
 
@@ -73,7 +73,7 @@ namespace FourInARowTests
         }
 
         [TestMethod]
-        public void Test_AscendingDiagonalWinning()
+        public void Test_AscendingDiagonal_Not_Winning()
         {
             TestSetup();
 
@@ -96,7 +96,7 @@ namespace FourInARowTests
         }
 
         [TestMethod]
-        public void Test_DescendingDiagonalWinning()
+        public void Test_DescendingDiagonal_Not_Winning()
         {
             TestSetup();
 
