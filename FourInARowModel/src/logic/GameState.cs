@@ -41,6 +41,8 @@ public class GameState
     }
     public void ShowHighScores()
     {
+        Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine(Strings.THANKS);
         Console.WriteLine();
         Console.WriteLine();
