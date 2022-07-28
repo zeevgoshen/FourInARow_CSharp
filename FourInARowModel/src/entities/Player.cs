@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FourInARowModel
+namespace FourInARowModel { }
+public class Player
 {
-    public class Player
-    {
-        public string Color { get; set; }
-        public string Name { get; set; }
-        public int CurrentScore { get; set; }
-        public string Symbol { get; set; }
+    public string Color { get; set; }
+    public string Name { get; set; }
+    public int CurrentScore { get; set; }
+    public string Symbol { get; set; }
 
+    public bool CheckNames(Player[] players)
+    {
+        return (String.Compare(players[0].Name, players[1].Name, StringComparison.OrdinalIgnoreCase) == 0);
     }
 }

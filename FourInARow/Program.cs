@@ -1,6 +1,4 @@
-﻿using FourInARowModel;
-using FourInARowModel.Constants;
-using FourInARowModel.src.logic;
+﻿using FourInARowModel.Constants;
 
 namespace ChessBoardConsole
 {
@@ -49,7 +47,6 @@ namespace ChessBoardConsole
             
             while (!win)
             {
-                
                 Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}," +
                     $" {Strings.COLOR} {state.CurrentPlayer.Color}");
 
@@ -130,9 +127,8 @@ namespace ChessBoardConsole
                 players[1].Color = "Red";
                 players[1].Symbol = "R";
             }
-            
-            Console.WriteLine(Strings.P2_ENTER_NAME);
-            players[1].Name = Console.ReadLine();
+
+            NameInputValidation.GetAndValidateSecondPlayerName(players);
         }
     }
 }
