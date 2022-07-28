@@ -39,7 +39,6 @@ namespace FourInARowModel
             // check ouf of bounds
             if (!theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied)
             {
-                theGrid[currentCell.RowNumber, currentCell.ColumnNumber].LegalNextMove = true;
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = state.CurrentPlayer.Symbol;
                 theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied = true;
             }
