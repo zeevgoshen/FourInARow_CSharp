@@ -30,12 +30,12 @@ public class Board
         }
     }
 
-    public void SetCellOnBoard(Cell currentCell, Game game)
+    public void SetCellOnBoard(Cell currentCell)
     {
         // occupy the cell with the current player's input column.
         if (!theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied)
         {
-            theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = game.CurrentPlayer.Symbol;
+            theGrid[currentCell.RowNumber, currentCell.ColumnNumber].Symbol = Game.CurrentPlayer.Symbol;
             theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied = true;
         }
     }

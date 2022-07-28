@@ -2,29 +2,22 @@
 
 namespace FourInARowTests
 {
-
     [TestClass]
     public class TestWinning
     {
         Board testBoard = new Board(7, 6);
-        GameState testState;
-        Game testGame;
         Player testPlayer;
         Cell testCell1;
         Cell testCell2;
         Cell testCell3;
         Cell testCell4;
 
-
         public void TestSetup()
         {
             testPlayer = new Player();
-            testState = new GameState();
-            testGame = new Game(testState);
 
-            testGame.CurrentPlayer = testPlayer;
-            testGame.CurrentPlayer.Symbol = "X";
-
+            Game.CurrentPlayer = testPlayer;
+            Game.CurrentPlayer.Symbol = "X";
         }
 
         [TestMethod]
@@ -38,14 +31,14 @@ namespace FourInARowTests
             testCell3 = new Cell(0, 3);
             testCell4 = new Cell(0, 4);
 
-            testBoard.SetCellOnBoard(testCell1, testGame);
-            testBoard.SetCellOnBoard(testCell2, testGame);
-            testBoard.SetCellOnBoard(testCell3, testGame);
-            testBoard.SetCellOnBoard(testCell4, testGame);
+            testBoard.SetCellOnBoard(testCell1);
+            testBoard.SetCellOnBoard(testCell2);
+            testBoard.SetCellOnBoard(testCell3);
+            testBoard.SetCellOnBoard(testCell4);
 
             WinCheck testWin = new WinCheck();
 
-            bool res = testWin.SearchWins(testBoard, testGame);
+            bool res = testWin.SearchWins(testBoard);
 
             Assert.AreEqual(res, true);
         }
@@ -61,14 +54,14 @@ namespace FourInARowTests
             testCell3 = new Cell(3, 0);
             testCell4 = new Cell(4, 0);
 
-            testBoard.SetCellOnBoard(testCell1, testGame);
-            testBoard.SetCellOnBoard(testCell2, testGame);
-            testBoard.SetCellOnBoard(testCell3, testGame);
-            testBoard.SetCellOnBoard(testCell4, testGame);
+            testBoard.SetCellOnBoard(testCell1);
+            testBoard.SetCellOnBoard(testCell2);
+            testBoard.SetCellOnBoard(testCell3);
+            testBoard.SetCellOnBoard(testCell4);
 
             WinCheck testWin = new WinCheck();
 
-            bool res = testWin.SearchWins(testBoard, testGame);
+            bool res = testWin.SearchWins(testBoard);
 
             Assert.AreEqual(res, true);
         }
@@ -84,14 +77,14 @@ namespace FourInARowTests
             testCell3 = new Cell(2, 2);
             testCell4 = new Cell(3, 3);
 
-            testBoard.SetCellOnBoard(testCell1, testGame);
-            testBoard.SetCellOnBoard(testCell2, testGame);
-            testBoard.SetCellOnBoard(testCell3, testGame);
-            testBoard.SetCellOnBoard(testCell4, testGame);
+            testBoard.SetCellOnBoard(testCell1);
+            testBoard.SetCellOnBoard(testCell2);
+            testBoard.SetCellOnBoard(testCell3);
+            testBoard.SetCellOnBoard(testCell4);
 
             WinCheck testWin = new WinCheck();
 
-            bool res = testWin.SearchWins(testBoard, testGame);
+            bool res = testWin.SearchWins(testBoard);
 
             Assert.AreEqual(res, true);
         }
@@ -107,14 +100,14 @@ namespace FourInARowTests
             testCell3 = new Cell(1, 1);
             testCell4 = new Cell(0, 0);
 
-            testBoard.SetCellOnBoard(testCell1, testGame);
-            testBoard.SetCellOnBoard(testCell2, testGame);
-            testBoard.SetCellOnBoard(testCell3, testGame);
-            testBoard.SetCellOnBoard(testCell4, testGame);
+            testBoard.SetCellOnBoard(testCell1);
+            testBoard.SetCellOnBoard(testCell2);
+            testBoard.SetCellOnBoard(testCell3);
+            testBoard.SetCellOnBoard(testCell4);
 
             WinCheck testWin = new WinCheck();
 
-            bool res = testWin.SearchWins(testBoard, testGame);
+            bool res = testWin.SearchWins(testBoard);
 
             Assert.AreEqual(res, true);
         }

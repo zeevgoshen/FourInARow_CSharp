@@ -1,9 +1,9 @@
 ﻿namespace FourInARowModel.src.logic { }
 public class WinCheck
 {
-    public bool SearchWins(Board myBoard, Game game)
+    public bool SearchWins(Board myBoard)
     {
-        string player = game.CurrentPlayer.Symbol;
+        string player = Game.CurrentPlayer.Symbol;
 
         // Horizontal Check 
         for (int j = 0; j < myBoard.theGrid.GetLength(1) - 3; j++)

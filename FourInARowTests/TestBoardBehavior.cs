@@ -2,24 +2,19 @@
 
 namespace FourInARowTests
 {
-
     [TestClass]
     public class TestBoardBehavior
     {
         Board testBoard = new Board(6, 7);
-        GameState testState;
-        Game testGame;
         Player testPlayer;
         Cell testCell;
 
         public void TestSetup()
         {
             testPlayer = new Player();
-            testState = new GameState();
-            testGame = new Game(testState);
 
-            testGame.CurrentPlayer = testPlayer;
-            testGame.CurrentPlayer.Symbol = "X";
+            Game.CurrentPlayer = testPlayer;
+            Game.CurrentPlayer.Symbol = "X";
         }
 
         [TestMethod]
@@ -45,12 +40,11 @@ namespace FourInARowTests
             TestSetup();
 
             testCell = new Cell(5, 4);
-            testBoard.SetCellOnBoard(testCell, testGame);
+            testBoard.SetCellOnBoard(testCell);
 
             int freeSpot = testBoard.getVacantLine(testCell.ColumnNumber);
 
             Assert.AreEqual(4, freeSpot);
         }
-
     }
 }
