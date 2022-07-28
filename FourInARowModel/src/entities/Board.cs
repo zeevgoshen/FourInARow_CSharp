@@ -45,7 +45,7 @@ namespace FourInARowModel
             }
         }
 
-        public Cell getValideCell()
+        public Cell getValidCell()
         {
             bool isValidInput = false;
             int currentRow = 0;

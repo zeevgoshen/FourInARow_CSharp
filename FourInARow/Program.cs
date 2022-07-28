@@ -53,7 +53,7 @@ namespace ChessBoardConsole
                 Console.WriteLine($"{Strings.NOW_PLAYING} {state.CurrentPlayer.Name}," +
                     $" {Strings.COLOR} {state.CurrentPlayer.Color}");
 
-                currentCell = myBoard.getValideCell();
+                currentCell = myBoard.getValidCell();
                 myBoard.SetCellOnBoard(currentCell, state);
 
                 win = winChecker.SearchWins(myBoard, state);
